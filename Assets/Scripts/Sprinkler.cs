@@ -10,6 +10,9 @@ public class Sprinkler : MonoBehaviour
     public float range = 15f;
     public float fireRate = 1f;
     private float fireCountdown = 0f;
+    public GameObject projectilePrefab;
+    public Transform firePoint;
+
 
     [Header("Unity Setup Fields")]
 
@@ -29,13 +32,10 @@ public class Sprinkler : MonoBehaviour
         foreach (GameObject enemy in enemies)
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy < range)
+            if (distanceToEnemy < shortestDistance)
             {
-                enemy.GetComponent<EnemyMovement>().speed = 0.75f;
-            }
-            else
-            {
-                enemy.GetComponent<EnemyMovement>().speed = 1.5f;
+                shortestDistance = distanceToEnemy;
+                nearestEnemy = enemy;
             }
         }
 
@@ -49,13 +49,35 @@ public class Sprinkler : MonoBehaviour
         }
     }
 
+
+    void Shoot()
+    {
+        GameObject projectileGO = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+        Projectile projectile = projectileGO.GetComponent<Projectile>();
+
+        if (projectile != null && target != null)
+        {
+            projectile.Seek(target);
+        }
+    }
+
+
+
     void Update()
     {
         if (target == null)
-        {
             return;
+
+        if (fireCountdown <= 0f)
+        {
+            Shoot();
+            fireCountdown = 1f / fireRate;
         }
+
+        fireCountdown -= Time.deltaTime;
     }
+
+
 
     private void OnDrawGizmosSelected()
     {
