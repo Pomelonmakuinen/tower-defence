@@ -5,6 +5,8 @@ public class Enemy : MonoBehaviour
     public float startHealth = 100f;
     private float currentHealth;
 
+    public int rewardAmount = 10;
+
     void Start()
     {
         currentHealth = startHealth;
@@ -22,6 +24,7 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
+        PlayerStats.Money += rewardAmount;
         Destroy(gameObject);
     }
 }
