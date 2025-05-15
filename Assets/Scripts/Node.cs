@@ -19,9 +19,11 @@ public class Node : MonoBehaviour
 
     void OnMouseDown()
     {
+        if (PauseMenu.GameIsPaused) return;
+
         if (sprinkler != null)
         {
-            Debug.Log("cant build there :-D");
+            Debug.Log("Can't build there :-D");
             return;
         }
 
@@ -31,11 +33,13 @@ public class Node : MonoBehaviour
 
     void OnMouseEnter()
     {
+        if (PauseMenu.GameIsPaused) return;  // Prevent highlight while paused
         rend.material.color = hoverColor;
     }
 
     void OnMouseExit()
     {
+        if (PauseMenu.GameIsPaused) return;  // Prevent color reset if paused
         rend.material.color = startColor;
     }
 }
