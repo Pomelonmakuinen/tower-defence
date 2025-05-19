@@ -4950,7 +4950,7 @@ GameObject:
   - component: {fileID: 1740917566}
   - component: {fileID: 1740917565}
   m_Layer: 5
-  m_Name: dialoguePanel
+  m_Name: DialoguePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5794,7 +5794,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99352eb8b2fc84b4ba129ce4b9a74721, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standardSprinklerPrefab: {fileID: 1194069348065456375, guid: 48c149928d9234e4b8f452f9d8bfe9e0, type: 3}
+  standardSprinkler:
+    prefab: {fileID: 1194069348065456375, guid: 48c149928d9234e4b8f452f9d8bfe9e0, type: 3}
+    cost: 0
 --- !u!114 &1863402262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5821,6 +5823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 772ca97db850d89498e1e500f0ee8f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startMoney: 100
 --- !u!114 &1863402264
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BuildManager : MonoBehaviour
@@ -10,23 +8,17 @@ public class BuildManager : MonoBehaviour
     {
         if (instance != null)
         {
-            Debug.Log("More than one buildmanager :-D");
+            Debug.Log("More than one BuildManager :-D");
+            return;
         }
 
         instance = this;
     }
 
-    public GameObject standardSprinklerPrefab;
+    public TurretBlueprint standardSprinkler;
 
-    void Start()
+    public TurretBlueprint GetTurretToBuild()
     {
-        sprinklerToBuild = standardSprinklerPrefab;
-    }
-
-    private GameObject sprinklerToBuild;
-
-    public GameObject GetSprinklerToBuild()
-    {
-        return sprinklerToBuild;
+        return standardSprinkler;
     }
 }

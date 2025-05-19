@@ -10,5 +10,6 @@ public class UIManager : MonoBehaviour
     {
         moneyText.text = "Money: " + PlayerStats.Money;
         livesText.text = "Lives: " + PlayerStats.Lives;
+        moneyText.text = "$" + PlayerStats.Money.ToString();
     }
 }

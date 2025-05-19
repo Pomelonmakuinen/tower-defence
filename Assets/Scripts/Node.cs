@@ -27,9 +27,19 @@ public class Node : MonoBehaviour
             return;
         }
 
-        GameObject sprinklerToBuild = BuildManager.instance.GetSprinklerToBuild();
-        sprinkler = (GameObject)Instantiate(sprinklerToBuild, transform.position, transform.rotation);
+        TurretBlueprint blueprint = BuildManager.instance.GetTurretToBuild();
+
+        if (PlayerStats.Money < blueprint.cost)
+        {
+            Debug.Log("Not enough money!");
+            return;
+        }
+
+        PlayerStats.Money -= blueprint.cost;
+
+        sprinkler = Instantiate(blueprint.prefab, transform.position, transform.rotation);
     }
+
 
     void OnMouseEnter()
     {
