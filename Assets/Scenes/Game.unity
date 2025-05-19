@@ -1149,7 +1149,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5796,7 +5796,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   standardSprinkler:
     prefab: {fileID: 1194069348065456375, guid: 48c149928d9234e4b8f452f9d8bfe9e0, type: 3}
-    cost: 0
+    cost: 25
 --- !u!114 &1863402262
 MonoBehaviour:
   m_ObjectHideFlags: 0
