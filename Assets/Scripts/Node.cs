@@ -19,26 +19,28 @@ public class Node : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (PauseMenu.GameIsPaused) return;
-
         if (sprinkler != null)
         {
             Debug.Log("Can't build there :-D");
             return;
         }
 
+        // Block building while paused
+        if (Time.timeScale == 0f)
+            return;
+
         TurretBlueprint blueprint = BuildManager.instance.GetTurretToBuild();
 
-        if (PlayerStats.Money < blueprint.cost)
+        if (blueprint == null || PlayerStats.Money < blueprint.cost)
         {
-            Debug.Log("Not enough money!");
+            Debug.Log("Not enough money or turret not selected.");
             return;
         }
 
         PlayerStats.Money -= blueprint.cost;
-
         sprinkler = Instantiate(blueprint.prefab, transform.position, transform.rotation);
     }
+
 
 
     void OnMouseEnter()

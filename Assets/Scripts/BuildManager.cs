@@ -8,17 +8,21 @@ public class BuildManager : MonoBehaviour
     {
         if (instance != null)
         {
-            Debug.Log("More than one BuildManager :-D");
+            Debug.LogError("More than one BuildManager in scene!");
             return;
         }
-
         instance = this;
     }
 
-    public TurretBlueprint standardSprinkler;
+    private TurretBlueprint turretToBuild;
+
+    public void SelectTurretToBuild(TurretBlueprint turret)
+    {
+        turretToBuild = turret;
+    }
 
     public TurretBlueprint GetTurretToBuild()
     {
-        return standardSprinkler;
+        return turretToBuild;
     }
 }
