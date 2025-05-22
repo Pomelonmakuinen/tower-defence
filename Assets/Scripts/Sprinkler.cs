@@ -10,12 +10,10 @@ public class Sprinkler : MonoBehaviour
     private float fireCountdown = 0f;
     public float damage = 1f;
 
-    [Header("Projectile Setup")]
-    public GameObject projectilePrefab;
-    public Transform firePoint;
-
     [Header("Unity Setup Fields")]
     public string enemyTag = "Enemy";
+    public GameObject projectilePrefab;
+    public Transform firePoint;
 
     void Start()
     {
@@ -48,6 +46,17 @@ public class Sprinkler : MonoBehaviour
         }
     }
 
+    void Shoot()
+    {
+        GameObject projectileGO = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+        Projectile projectile = projectileGO.GetComponent<Projectile>();
+
+        if (projectile != null && target != null)
+        {
+            projectile.Seek(target, damage); // Correct Seek call
+        }
+    }
+
     void Update()
     {
         if (target == null)
@@ -60,17 +69,6 @@ public class Sprinkler : MonoBehaviour
         }
 
         fireCountdown -= Time.deltaTime;
-    }
-
-    void Shoot()
-    {
-        GameObject projectileGO = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-        Projectile projectile = projectileGO.GetComponent<Projectile>();
-
-        if (projectile != null)
-        {
-            projectile.Seek(target, damage);
-        }
     }
 
     private void OnDrawGizmosSelected()

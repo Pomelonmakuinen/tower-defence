@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
+        Debug.Log($"Enemy took {amount} damage. Health now: {currentHealth - amount}");
         currentHealth -= amount;
 
         if (currentHealth <= 0f)
@@ -21,6 +22,7 @@ public class Enemy : MonoBehaviour
             Die();
         }
     }
+
 
     void Die()
     {

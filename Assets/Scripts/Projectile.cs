@@ -6,11 +6,6 @@ public class Projectile : MonoBehaviour
     public float speed = 10f;
     public float damage;
 
-    public void Seek(Transform _target)
-    {
-        target = _target;
-    }
-
     void Update()
     {
         if (target == null)
@@ -43,9 +38,15 @@ public class Projectile : MonoBehaviour
         Enemy enemy = target.GetComponent<Enemy>();
         if (enemy != null)
         {
+            Debug.Log($"Hitting enemy for {damage} damage");
             enemy.TakeDamage(damage);
+        }
+        else
+        {
+            Debug.Log("No Enemy component found on target.");
         }
 
         Destroy(gameObject);
     }
+
 }

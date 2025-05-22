@@ -39,6 +39,12 @@ public class Node : MonoBehaviour
 
         PlayerStats.Money -= blueprint.cost;
         sprinkler = Instantiate(blueprint.prefab, transform.position, transform.rotation);
+
+        Sprinkler sprinklerScript = sprinkler.GetComponent<Sprinkler>();
+        if (sprinklerScript != null)
+        {
+            sprinklerScript.damage = blueprint.damage;
+        }
     }
 
 
