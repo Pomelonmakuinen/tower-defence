@@ -4046,6 +4046,7 @@ MonoBehaviour:
   enemySpawn: {fileID: 8300000, guid: abb14d686b7098f4cb985d676934d33a, type: 3}
   gruntSound: {fileID: 8300000, guid: bd14483d010f84c449f2255a52b9255a, type: 3}
   removeSound: {fileID: 8300000, guid: c7c0e8caf7d792645831f2570be1e278, type: 3}
+  damageSound: {fileID: 8300000, guid: 17da923eae3f5ce459bd74ef973c9c6a, type: 3}
 --- !u!4 &1002908860
 Transform:
   m_ObjectHideFlags: 0
