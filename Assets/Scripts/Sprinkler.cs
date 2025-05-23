@@ -51,6 +51,8 @@ public class Sprinkler : MonoBehaviour
         GameObject projectileGO = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
         Projectile projectile = projectileGO.GetComponent<Projectile>();
 
+        SFXManager.Instance.PlayTurretShoot();
+
         if (projectile != null && target != null)
         {
             projectile.Seek(target, damage); // Correct Seek call
