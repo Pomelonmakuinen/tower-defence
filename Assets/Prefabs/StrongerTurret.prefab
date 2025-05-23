@@ -95,6 +95,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StrongerTurret
       objectReference: {fileID: 0}
+    - target: {fileID: 7202271454713460447, guid: a9e9ed09a4d46b5478d0cd1f17cdf2bc, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9f21e83c8e610764cb7d40403ac9264e, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
