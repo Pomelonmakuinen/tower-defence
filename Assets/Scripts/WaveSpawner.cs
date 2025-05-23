@@ -1,11 +1,12 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
 
 public class WaveSpawner : MonoBehaviour
 {
     [Header("Enemy Settings")]
-    public Transform[] enemyPrefabs; // Assign multiple enemies here in Inspector
+    public Transform[] enemyPrefabs;
     public Transform spawnPoint;
 
     [Header("Wave Settings")]
@@ -19,7 +20,9 @@ public class WaveSpawner : MonoBehaviour
 
     [Header("Dialogue")]
     public DialogueManager dialogueManager;
-    private bool dialogueShown = false;
+    public List<string> dialogueLines;
+
+    private bool dialogueTriggered = false;
 
     void Update()
     {
@@ -32,17 +35,18 @@ public class WaveSpawner : MonoBehaviour
         countdown -= Time.deltaTime;
         waveCountdownText.text = Mathf.Round(countdown).ToString();
         roundText.text = "Round: " + waveIndex;
-
-        if (waveIndex == 5 && !dialogueShown)
-        {
-            ShowDialogue();
-            dialogueShown = true;
-        }
     }
 
     IEnumerator SpawnWave()
     {
         waveIndex++;
+
+        // Trigger dialogue on wave 3
+        if (waveIndex == 3 && !dialogueTriggered && dialogueManager != null && dialogueLines.Count > 0)
+        {
+            dialogueManager.StartDialogue(dialogueLines);
+            dialogueTriggered = true;
+        }
 
         for (int i = 0; i < waveIndex; i++)
         {
@@ -55,23 +59,11 @@ public class WaveSpawner : MonoBehaviour
 
     Transform SelectEnemyToSpawn()
     {
-        if (waveIndex < 3)
-            return enemyPrefabs[0]; // Normal enemy
-        else if (waveIndex < 6)
-            return enemyPrefabs[1]; // Fast enemy
+        if (waveIndex % 3 == 1)
+            return enemyPrefabs[0]; // Normal
+        else if (waveIndex % 3 == 2)
+            return enemyPrefabs[1]; // Fast
         else
-            return enemyPrefabs[2]; // Tank enemy
-    }
-
-    void ShowDialogue()
-    {
-        var lines = new System.Collections.Generic.List<string>
-        {
-            "Hold on...",
-            "That last wave was tougher than expected.",
-            "Something big might be coming."
-        };
-
-        dialogueManager.StartDialogue(lines);
+            return enemyPrefabs[2]; // Tank
     }
 }

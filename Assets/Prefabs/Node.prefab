@@ -60,10 +60,13 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: -876546973899608171, guid: c58914cf8cd92734f8940f9ef6f80f94, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -118,4 +121,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a39d704a1650610409424d324bae9967, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverColor: {r: 0.49803925, g: 0.49803925, b: 0.49803925, a: 0}
+  hoverColor: {r: 0.025139287, g: 0.2924528, b: 0, a: 0}

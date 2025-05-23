@@ -15,14 +15,14 @@ public class DialogueManager : MonoBehaviour
     {
         sentences = new Queue<string>();
         dialoguePanel.SetActive(false);
-
         continueButton.onClick.AddListener(DisplayNextSentence);
     }
 
     public void StartDialogue(List<string> dialogueLines)
     {
-        dialoguePanel.SetActive(true);
+        Debug.Log("Triggering dialogue for wave 3");
         SFXManager.Instance.PlayGruntSound();
+        dialoguePanel.SetActive(true);
         sentences.Clear();
 
         foreach (string line in dialogueLines)
