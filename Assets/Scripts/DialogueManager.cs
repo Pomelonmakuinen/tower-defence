@@ -22,6 +22,7 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(List<string> dialogueLines)
     {
         dialoguePanel.SetActive(true);
+        SFXManager.Instance.PlayGruntSound();
         sentences.Clear();
 
         foreach (string line in dialogueLines)

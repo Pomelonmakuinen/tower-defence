@@ -40,6 +40,9 @@ public class Projectile : MonoBehaviour
         {
             Debug.Log($"Hitting enemy for {damage} damage");
             enemy.TakeDamage(damage);
+
+            // Play enemy hit sound
+            SFXManager.Instance.PlayEnemyHit();
         }
         else
         {
@@ -48,5 +51,6 @@ public class Projectile : MonoBehaviour
 
         Destroy(gameObject);
     }
+
 
 }

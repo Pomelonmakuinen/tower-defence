@@ -19,23 +19,33 @@ public class Node : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (sprinkler != null)
-        {
-            Debug.Log("Can't build there :-D");
-            return;
-        }
-
-        // Block building while paused
         if (Time.timeScale == 0f)
             return;
 
-        TurretBlueprint blueprint = BuildManager.instance.GetTurretToBuild();
-
-        if (blueprint == null || PlayerStats.Money < blueprint.cost)
+        if (BuildManager.instance.isRemoving)
         {
-            Debug.Log("Not enough money or turret not selected.");
+            if (sprinkler == null)
+            {
+                Debug.Log("No turret to remove.");
+                return;
+            }
+
+            PlayerStats.Money += 10;
+            Destroy(sprinkler);
+            sprinkler = null;
+            Debug.Log("Turret removed.");
             return;
         }
+
+        if (sprinkler != null)
+        {
+            Debug.Log("Can't build here.");
+            return;
+        }
+
+        TurretBlueprint blueprint = BuildManager.instance.GetTurretToBuild();
+        if (blueprint == null || PlayerStats.Money < blueprint.cost)
+            return;
 
         PlayerStats.Money -= blueprint.cost;
         sprinkler = Instantiate(blueprint.prefab, transform.position, transform.rotation);
@@ -45,12 +55,17 @@ public class Node : MonoBehaviour
         {
             sprinklerScript.damage = blueprint.damage;
         }
-    }
 
+        // Play turret placement sound
+        SFXManager.Instance.PlayTurretPlace();
+    }
 
 
     void OnMouseEnter()
     {
+        if (Time.timeScale == 0f)
+            return;
+
         if (PauseMenu.GameIsPaused) return;  // Prevent highlight while paused
         rend.material.color = hoverColor;
     }

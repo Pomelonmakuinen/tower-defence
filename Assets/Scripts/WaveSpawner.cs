@@ -1,18 +1,25 @@
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using TMPro;
 
 public class WaveSpawner : MonoBehaviour
 {
-    public Transform enemyPrefab;
+    [Header("Enemy Settings")]
+    public Transform[] enemyPrefabs; // Assign multiple enemies here in Inspector
     public Transform spawnPoint;
+
+    [Header("Wave Settings")]
     public float timeBetweenWaves = 5f;
-    private float countdown = 2f;
+    public float countdown = 2f;
+    public static int waveIndex = 0;
+
+    [Header("UI")]
     public TextMeshProUGUI waveCountdownText;
-    private int waveIndex = 0;
     public TextMeshProUGUI roundText;
 
+    [Header("Dialogue")]
+    public DialogueManager dialogueManager;
+    private bool dialogueShown = false;
 
     void Update()
     {
@@ -23,11 +30,14 @@ public class WaveSpawner : MonoBehaviour
         }
 
         countdown -= Time.deltaTime;
-
         waveCountdownText.text = Mathf.Round(countdown).ToString();
-
         roundText.text = "Round: " + waveIndex;
 
+        if (waveIndex == 5 && !dialogueShown)
+        {
+            ShowDialogue();
+            dialogueShown = true;
+        }
     }
 
     IEnumerator SpawnWave()
@@ -36,25 +46,32 @@ public class WaveSpawner : MonoBehaviour
 
         for (int i = 0; i < waveIndex; i++)
         {
-            SpawnEnemy();
+            Transform enemyToSpawn = SelectEnemyToSpawn();
+            Instantiate(enemyToSpawn, spawnPoint.position, spawnPoint.rotation);
+            SFXManager.Instance.PlayEnemySpawn();
             yield return new WaitForSeconds(1f);
-        }
-
-        // Trigger dialogue AFTER spawning a specific wave
-        if (waveIndex == 3)
-        {
-            List<string> lines = new List<string>()
-        {
-            "You're doing great so far!",
-            "But be careful, stronger enemies are coming...",
-        };
-
-            FindObjectOfType<DialogueManager>().StartDialogue(lines);
         }
     }
 
-    void SpawnEnemy()
+    Transform SelectEnemyToSpawn()
     {
-        Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+        if (waveIndex < 3)
+            return enemyPrefabs[0]; // Normal enemy
+        else if (waveIndex < 6)
+            return enemyPrefabs[1]; // Fast enemy
+        else
+            return enemyPrefabs[2]; // Tank enemy
+    }
+
+    void ShowDialogue()
+    {
+        var lines = new System.Collections.Generic.List<string>
+        {
+            "Hold on...",
+            "That last wave was tougher than expected.",
+            "Something big might be coming."
+        };
+
+        dialogueManager.StartDialogue(lines);
     }
 }
