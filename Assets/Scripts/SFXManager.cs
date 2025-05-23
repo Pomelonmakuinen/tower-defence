@@ -11,6 +11,7 @@ public class SFXManager : MonoBehaviour
     public AudioClip turretShoot;
     public AudioClip enemySpawn;
     public AudioClip gruntSound;
+    public AudioClip removeSound;
 
     void Awake()
     {
@@ -24,4 +25,5 @@ public class SFXManager : MonoBehaviour
     public void PlayTurretShoot() => audioSource.PlayOneShot(turretShoot);
     public void PlayEnemySpawn() => audioSource.PlayOneShot(enemySpawn);
     public void PlayGruntSound() => audioSource.PlayOneShot(gruntSound);
+    public void PlayRemoveSound() => audioSource.PlayOneShot(removeSound);
 }

@@ -40,6 +40,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: a9e9ed09a4d46b5478d0cd1f17cdf2bc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a9e9ed09a4d46b5478d0cd1f17cdf2bc, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a9e9ed09a4d46b5478d0cd1f17cdf2bc, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a9e9ed09a4d46b5478d0cd1f17cdf2bc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.227915
       objectReference: {fileID: 0}
@@ -117,9 +129,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 4.5
   fireRate: 1
+  damage: 1
+  enemyTag: Enemy
   projectilePrefab: {fileID: 883289055003210646, guid: 70179d83a7786c34a85e9c79b86bd66e, type: 3}
   firePoint: {fileID: 352972316757271229}
-  enemyTag: Enemy
 --- !u!4 &2006915563794721357 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a9e9ed09a4d46b5478d0cd1f17cdf2bc, type: 3}

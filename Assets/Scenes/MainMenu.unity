@@ -1510,6 +1510,8 @@ MonoBehaviour:
   enemyHit: {fileID: 0}
   turretShoot: {fileID: 0}
   enemySpawn: {fileID: 0}
+  gruntSound: {fileID: 0}
+  removeSound: {fileID: 0}
 --- !u!1 &2064290564
 GameObject:
   m_ObjectHideFlags: 0

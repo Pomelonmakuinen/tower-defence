@@ -32,6 +32,7 @@ public class Node : MonoBehaviour
 
             PlayerStats.Money += 10;
             Destroy(sprinkler);
+            SFXManager.Instance.PlayRemoveSound();
             sprinkler = null;
             Debug.Log("Turret removed.");
             return;
